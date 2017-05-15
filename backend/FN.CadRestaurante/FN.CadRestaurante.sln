@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FN.CadRestaurante.Api", "..\FN.CadRestaurante.Api\FN.CadRestaurante.Api.csproj", "{D7FBC712-A1D4-44C7-813C-6FEE159F4F23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FN.CadRestaurante.Domain", "FN.CadRestaurante.Domain\FN.CadRestaurante.Domain.csproj", "{29C8EBF3-CC8B-4BBF-8766-1F1DA0146E59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FN.CadRestaurante.Infra.Data", "FN.CadRestaurante.Infra.Data\FN.CadRestaurante.Infra.Data.csproj", "{F09FBCEC-DCAE-46EF-9F40-A54AA8223169}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FN.CadRestaurante.CrossCutting", "FN.CadRestaurante.CrossCutting\FN.CadRestaurante.CrossCutting.csproj", "{99BEFC99-27D2-47CC-99CE-002DB4CF0F83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FN.CadRestaurante.UnitTest", "FN.CadRestaurante.UnitTest\FN.CadRestaurante.UnitTest.csproj", "{6D5F9282-10E3-4252-8A98-09F3EA34BB39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7FBC712-A1D4-44C7-813C-6FEE159F4F23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7FBC712-A1D4-44C7-813C-6FEE159F4F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7FBC712-A1D4-44C7-813C-6FEE159F4F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7FBC712-A1D4-44C7-813C-6FEE159F4F23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29C8EBF3-CC8B-4BBF-8766-1F1DA0146E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C8EBF3-CC8B-4BBF-8766-1F1DA0146E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C8EBF3-CC8B-4BBF-8766-1F1DA0146E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C8EBF3-CC8B-4BBF-8766-1F1DA0146E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F09FBCEC-DCAE-46EF-9F40-A54AA8223169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F09FBCEC-DCAE-46EF-9F40-A54AA8223169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F09FBCEC-DCAE-46EF-9F40-A54AA8223169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F09FBCEC-DCAE-46EF-9F40-A54AA8223169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99BEFC99-27D2-47CC-99CE-002DB4CF0F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99BEFC99-27D2-47CC-99CE-002DB4CF0F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99BEFC99-27D2-47CC-99CE-002DB4CF0F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99BEFC99-27D2-47CC-99CE-002DB4CF0F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D5F9282-10E3-4252-8A98-09F3EA34BB39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D5F9282-10E3-4252-8A98-09F3EA34BB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D5F9282-10E3-4252-8A98-09F3EA34BB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D5F9282-10E3-4252-8A98-09F3EA34BB39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
