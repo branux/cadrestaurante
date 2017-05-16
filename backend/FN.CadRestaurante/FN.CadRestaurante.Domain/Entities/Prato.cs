@@ -1,4 +1,5 @@
 ﻿using FN.CadRestaurante.Domain.FluentValidator;
+using System.Collections.Generic;
 
 namespace FN.CadRestaurante.Domain.Entities
 {
@@ -15,6 +16,7 @@ namespace FN.CadRestaurante.Domain.Entities
 
         public string Nome { get; private set; }
         public decimal Preco { get; private set; }
+        public List<RestaurantePrato> RestaurantePrato { get; set; }
 
         public void Alterar(string nome, decimal preco)
         {

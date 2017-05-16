@@ -8,7 +8,7 @@ namespace FN.CadRestaurante.Infra.Data.EF.Maps
     {
         public PratoMap(EntityTypeBuilder<Prato> entity)
         {
-            entity.ToTable(nameof(Restaurante));
+            entity.ToTable(nameof(Prato));
             entity.HasKey(c => c.Id);
 
             entity.Property(col => col.Id)

@@ -25,12 +25,16 @@ namespace FN.CadRestaurante.Infra.Data.EF
         {
             optionsBuilder.UseSqlServer(_conn);
 
+            //Configurar na unha a ConectionString para rodar o Migrations
+            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CadRestauranteDB;Trusted_Connection=True;MultipleActiveResultSets=true");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             new RestauranteMap(modelBuilder.Entity<Restaurante>());
             new PratoMap(modelBuilder.Entity<Prato>());
+            new RestaurantePratoMap(modelBuilder.Entity<RestaurantePrato>());
         }
     }
 }
