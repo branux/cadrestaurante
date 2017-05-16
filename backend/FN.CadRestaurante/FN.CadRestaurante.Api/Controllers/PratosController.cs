@@ -1,5 +1,5 @@
 ﻿using FN.CadRestaurante.Api.Models;
-using FN.CadRestaurante.Domain.Commands.RestauranteCommand;
+using FN.CadRestaurante.Domain.Commands.PratoCommand;
 using FN.CadRestaurante.Domain.Contracts.Infra;
 using FN.CadRestaurante.Domain.Contracts.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -10,27 +10,27 @@ using System.Threading.Tasks;
 
 namespace FN.CadRestaurante.Api.Controllers
 {
-    [Route("api/v1/restaurantes")]
-    public class RestaurantesController : BaseController
+    [Route("api/v1/pratos")]
+    public class PratosController : BaseController
     {
 
-        private readonly IRestauranteRepository _restauranteRepo;
-        private readonly RestauranteCommandHandler _handler;
+        private readonly IPratoRepository _pratoRepo;
+        private readonly PratoCommandHandler _handler;
 
-        public RestaurantesController(
+        public PratosController(
             IUnitOfWork uow,
-            RestauranteCommandHandler handler,
-            IRestauranteRepository restauranteRepo) : base(uow)
+            PratoCommandHandler handler,
+            IPratoRepository restauranteRepo) : base(uow)
         {
             _handler = handler;
-            _restauranteRepo = restauranteRepo;
+            _pratoRepo = restauranteRepo;
         }
 
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> Get()
         {
-            var dados = await _restauranteRepo
+            var dados = await _pratoRepo
                 .ObterAsync()
                 .ConfigureAwait(false);
 
@@ -40,6 +40,8 @@ namespace FN.CadRestaurante.Api.Controllers
                     {
                         Id = u.Id,
                         Nome = u.Nome,
+                        Preco = u.Preco,
+                        RestauranteId = u.RestauranteId,
                         DataCadastro = u.DataCadastro
                     })
                     , true));
@@ -47,7 +49,7 @@ namespace FN.CadRestaurante.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public Task<IActionResult> Post([FromBody]AddRestauranteCommand command)
+        public Task<IActionResult> Post([FromBody]AddPratoCommand command)
         {
             _handler.Handle(command);
             return ReturnResponseCommit(command, _handler.Notifications, HttpStatusCode.Created);
@@ -55,11 +57,20 @@ namespace FN.CadRestaurante.Api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public Task<IActionResult> Put(Guid id,[FromBody]EditRestauranteCommand command)
+        public Task<IActionResult> Put(Guid id, [FromBody]EditPratoCommand command)
         {
             command.Id = id;
             _handler.Handle(command);
             return ReturnResponseCommit(command, _handler.Notifications, HttpStatusCode.OK);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public Task<IActionResult> Delete(Guid id)
+        {
+            var command = new DelPratoCommand(id);
+            _handler.Handle(command);
+            return ReturnResponseCommit(command, _handler.Notifications, HttpStatusCode.NoContent);
         }
     }
 }

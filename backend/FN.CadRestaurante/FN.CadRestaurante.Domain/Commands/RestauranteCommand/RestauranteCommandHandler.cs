@@ -10,13 +10,10 @@ namespace FN.CadRestaurante.Domain.Commands.RestauranteCommand
         ICommandHandler<EditRestauranteCommand>
     {
         private readonly IRestauranteRepository _restauranteRepo;
-        private readonly IPratoRepository _pratoRepo;
 
-        public RestauranteCommandHandler(
-            IRestauranteRepository restauranteRepo, IPratoRepository pratoRepo)
+        public RestauranteCommandHandler(IRestauranteRepository restauranteRepo)
         {
             _restauranteRepo = restauranteRepo;
-            _pratoRepo = pratoRepo;
         }
 
         public void Handle(AddRestauranteCommand command)
