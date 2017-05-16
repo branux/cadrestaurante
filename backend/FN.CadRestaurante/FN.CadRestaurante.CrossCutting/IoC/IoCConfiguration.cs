@@ -2,6 +2,8 @@
 using FN.CadRestaurante.Infra.Data.EF;
 using FN.CadRestaurante.Domain.Contracts.Repositories;
 using FN.CadRestaurante.Infra.Data.Respositories;
+using FN.CadRestaurante.Domain.Contracts.Infra;
+using FN.CadRestaurante.Domain.Commands.RestauranteCommand;
 
 namespace FN.CadRestaurante.CrossCutting.IoC
 {
@@ -11,9 +13,9 @@ namespace FN.CadRestaurante.CrossCutting.IoC
         {
             services.AddScoped(typeof(CadRestauranteDataContext));
 
-            //services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
+            services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
 
-            //services.AddTransient(typeof(UsuarioCommandHandler));
+            services.AddTransient(typeof(RestauranteCommandHandler));
 
             services.AddTransient(typeof(IRestauranteRepository), typeof(RestauranteRepository));
             services.AddTransient(typeof(IPratoRepository), typeof(PratoRepository));
