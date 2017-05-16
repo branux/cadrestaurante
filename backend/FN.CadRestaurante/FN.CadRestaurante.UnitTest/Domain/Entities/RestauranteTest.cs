@@ -1,8 +1,5 @@
 ﻿using FN.CadRestaurante.Domain.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FN.CadRestaurante.UnitTest.Domain.Entities
 {
