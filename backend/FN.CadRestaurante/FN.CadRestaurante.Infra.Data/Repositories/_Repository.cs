@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FN.CadRestaurante.Infra.Data.Respositories
+namespace FN.CadRestaurante.Infra.Data.Repositories
 {
     public abstract class Repository<T> : IRepository<T> where T : Entity
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using FN.CadRestaurante.Infra.Data.EF;
 using FN.CadRestaurante.Domain.Contracts.Repositories;
-using FN.CadRestaurante.Infra.Data.Respositories;
+using FN.CadRestaurante.Infra.Data.Repositories;
 using FN.CadRestaurante.Domain.Contracts.Infra;
 using FN.CadRestaurante.Domain.Commands.RestauranteCommand;
 
