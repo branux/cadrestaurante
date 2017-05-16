@@ -15,6 +15,12 @@ namespace FN.CadRestaurante.Domain.Entities
 
         public string Nome { get; private set; }
 
+        public void Alterar(string nome)
+        {
+            Nome = nome;
+            validar();
+        }
+
         private void validar()
         {
             new ValidationContract<Restaurante>(this)
