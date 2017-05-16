@@ -6,11 +6,12 @@ namespace FN.CadRestaurante.Domain.Entities
     public class Restaurante : Entity
     {
         protected Restaurante()
-        {}
+        { }
 
         public Restaurante(string nome)
         {
             Nome = nome;
+            RestaurantePrato = new List<RestaurantePrato>();
             validar();
         }
 
@@ -23,10 +24,15 @@ namespace FN.CadRestaurante.Domain.Entities
             validar();
         }
 
+        public void AdicionarPrato(Prato prato)
+        {
+            RestaurantePrato.Add(new RestaurantePrato(this, prato));
+        }
+
         private void validar()
         {
             new ValidationContract<Restaurante>(this)
-                .IsRequired(p => p.Nome, "O nome do reaturante é obrigatório")
+                .IsRequired(p => p.Nome, "O nome do restaurante é obrigatório")
                 .HasMaxLenght(p => p.Nome, 100, "O nome do restaurante deve ter até 100 caracteres")
                 .HasMinLenght(p => p.Nome, 3, "O nome do restaurante deve ter ao menos 3 caracteres");
         }
