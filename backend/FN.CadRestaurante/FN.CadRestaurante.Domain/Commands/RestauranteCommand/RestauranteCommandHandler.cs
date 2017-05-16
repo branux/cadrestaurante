@@ -2,13 +2,12 @@
 using FN.CadRestaurante.Domain.Contracts.Repositories;
 using FN.CadRestaurante.Domain.Entities;
 using FN.CadRestaurante.Domain.FluentValidator;
-using System.Linq;
 
 namespace FN.CadRestaurante.Domain.Commands.RestauranteCommand
 {
     public class RestauranteCommandHandler : Notifiable,
         ICommandHandler<AddRestauranteCommand>,
-        ICommandHandler<AddPratoNoRestauranteCommand>
+        ICommandHandler<EditRestauranteCommand>
     {
         private readonly IRestauranteRepository _restauranteRepo;
         private readonly IPratoRepository _pratoRepo;
@@ -32,30 +31,17 @@ namespace FN.CadRestaurante.Domain.Commands.RestauranteCommand
             command.Id = restaurante.Id;
         }
 
-        public void Handle(AddPratoNoRestauranteCommand command)
+        public void Handle(EditRestauranteCommand command)
         {
-            var restaurante = _restauranteRepo.ObterComPratos(command.RestauranteId);
-
+            var restaurante = _restauranteRepo.Obter(command.Id);
             if (restaurante == null)
-            {
-                AddNotification("RestauranteId", "Restaurante não encontrado");
-            }
-
-            if (restaurante != null && restaurante.RestaurantePrato.Any(p => p.PratoId == command.PratoId))
-            {
-                AddNotification("PratoId", "Este prato já foi adicionado");
-            }
-
-            var prato = _pratoRepo.Obter(command.PratoId);
-            if (prato == null)
-            {
-                AddNotification("PratoId", "Prato não encontrado");
-            }
+                AddNotification("restauranteId", "Restaurante não encontrado");
 
             if (!IsValid())
                 return;
 
-            restaurante.AdicionarPrato(prato);
+            restaurante.Alterar(command.Nome);
+            AddNotifications(restaurante.Notifications);
         }
     }
 }

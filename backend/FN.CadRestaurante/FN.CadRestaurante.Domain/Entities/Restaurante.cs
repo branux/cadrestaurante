@@ -11,22 +11,17 @@ namespace FN.CadRestaurante.Domain.Entities
         public Restaurante(string nome)
         {
             Nome = nome;
-            RestaurantePrato = new List<RestaurantePrato>();
+            Pratos = new List<Prato>();
             validar();
         }
 
         public string Nome { get; private set; }
-        public List<RestaurantePrato> RestaurantePrato { get; set; }
+        public List<Prato> Pratos { get; set; }
 
         public void Alterar(string nome)
         {
             Nome = nome;
             validar();
-        }
-
-        public void AdicionarPrato(Prato prato)
-        {
-            RestaurantePrato.Add(new RestaurantePrato(this, prato));
         }
 
         private void validar()

@@ -16,14 +16,14 @@ namespace FN.CadRestaurante.Infra.Data.Repositories
         public Restaurante ObterComPratos(Guid id)
         {
             return _context.Set<Restaurante>()
-                    .Include(p => p.RestaurantePrato)
+                    //.Include(p => p.RestaurantePrato)
                     .FirstOrDefault(r => r.Id == id);
         }
 
         public async Task<Restaurante> ObterComPratosAsync(Guid id)
         {
             return await _context.Set<Restaurante>()
-                .Include(p => p.RestaurantePrato)
+                //.Include(p => p.RestaurantePrato)
                 .FirstOrDefaultAsync(r => r.Id == id);
         }
     }

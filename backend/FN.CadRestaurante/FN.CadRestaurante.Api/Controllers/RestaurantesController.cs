@@ -3,6 +3,7 @@ using FN.CadRestaurante.Domain.Commands.RestauranteCommand;
 using FN.CadRestaurante.Domain.Contracts.Infra;
 using FN.CadRestaurante.Domain.Contracts.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -52,13 +53,12 @@ namespace FN.CadRestaurante.Api.Controllers
             return ReturnResponseCommit(command, _handler.Notifications, HttpStatusCode.Created);
         }
 
-        [HttpPost]
-        [Route("addprato")]
-        public Task<IActionResult> AddPrato([FromBody]AddPratoNoRestauranteCommand command)
+        [HttpPut]
+        [Route("{id}")]
+        public Task<IActionResult> Put(Guid id,[FromBody]EditRestauranteCommand command)
         {
             _handler.Handle(command);
-            return ReturnResponseCommit(command, _handler.Notifications, HttpStatusCode.Created);
+            return ReturnResponseCommit(command, _handler.Notifications, HttpStatusCode.OK);
         }
-
     }
 }

@@ -31,6 +31,10 @@ namespace FN.CadRestaurante.Infra.Data.EF.Maps
                    .HasColumnType($"datetime")
                    .IsRequired();
 
+            entity
+                .HasOne(p => p.Restaurante)
+                .WithMany(b => b.Pratos);
+
             entity.Ignore(col => col.Notifications);
         }
     }

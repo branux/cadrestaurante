@@ -36,7 +36,11 @@ namespace FN.CadRestaurante.Infra.Data.Migrations
                         .HasColumnName("Preco")
                         .HasColumnType("money");
 
+                    b.Property<Guid>("RestauranteId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RestauranteId");
 
                     b.ToTable("Prato");
                 });
@@ -62,32 +66,10 @@ namespace FN.CadRestaurante.Infra.Data.Migrations
                     b.ToTable("Restaurante");
                 });
 
-            modelBuilder.Entity("FN.CadRestaurante.Domain.Entities.RestaurantePrato", b =>
+            modelBuilder.Entity("FN.CadRestaurante.Domain.Entities.Prato", b =>
                 {
-                    b.Property<Guid>("RestauranteId")
-                        .HasColumnName("RestauranteId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PratoId")
-                        .HasColumnName("PratoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("RestauranteId", "PratoId");
-
-                    b.HasIndex("PratoId");
-
-                    b.ToTable("RestaurantePrato");
-                });
-
-            modelBuilder.Entity("FN.CadRestaurante.Domain.Entities.RestaurantePrato", b =>
-                {
-                    b.HasOne("FN.CadRestaurante.Domain.Entities.Prato", "Prato")
-                        .WithMany("RestaurantePrato")
-                        .HasForeignKey("PratoId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("FN.CadRestaurante.Domain.Entities.Restaurante", "Restaurante")
-                        .WithMany("RestaurantePrato")
+                        .WithMany("Pratos")
                         .HasForeignKey("RestauranteId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

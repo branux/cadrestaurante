@@ -21,12 +21,15 @@ namespace FN.CadRestaurante.Infra.Data.EF
 
         }
 
+        public CadRestauranteDataContext() //É necessário para o Migrations
+        {}
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_conn);
+            //optionsBuilder.UseSqlServer(_conn);
 
             //Configurar na unha a ConectionString para rodar o Migrations
-            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CadRestauranteDB;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CadRestauranteDB;Trusted_Connection=True;MultipleActiveResultSets=true");
 
         }
 
@@ -34,7 +37,6 @@ namespace FN.CadRestaurante.Infra.Data.EF
         {
             new RestauranteMap(modelBuilder.Entity<Restaurante>());
             new PratoMap(modelBuilder.Entity<Prato>());
-            new RestaurantePratoMap(modelBuilder.Entity<RestaurantePrato>());
         }
     }
 }
