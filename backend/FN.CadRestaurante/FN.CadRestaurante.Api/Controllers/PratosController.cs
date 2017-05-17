@@ -47,6 +47,30 @@ namespace FN.CadRestaurante.Api.Controllers
                     , true));
         }
 
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var dados = await _pratoRepo
+                .ObterAsync(id)
+                .ConfigureAwait(false);
+
+            if (dados == null)
+                return NotFound();
+
+            return Json(
+                new DadosDefaultVM(
+                    new
+                    {
+                        Id = dados.Id,
+                        Nome = dados.Nome,
+                        Preco = dados.Preco,
+                        RestauranteId = dados.RestauranteId,
+                        DataCadastro = dados.DataCadastro
+                    }
+                    , true));
+        }
+
         [HttpPost]
         [Route("")]
         public Task<IActionResult> Post([FromBody]AddPratoCommand command)

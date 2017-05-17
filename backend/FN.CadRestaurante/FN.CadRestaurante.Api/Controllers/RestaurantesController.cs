@@ -45,6 +45,29 @@ namespace FN.CadRestaurante.Api.Controllers
                     , true));
         }
 
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var dados = await _restauranteRepo
+                .ObterAsync(id)
+                .ConfigureAwait(false);
+
+
+            if (dados == null)
+                return NotFound();
+
+            return Json(
+                new DadosDefaultVM(
+                    new
+                    {
+                        Id = dados.Id,
+                        Nome = dados.Nome,
+                        DataCadastro = dados.DataCadastro
+                    }
+                    , true));
+        }
+
         [HttpPost]
         [Route("")]
         public Task<IActionResult> Post([FromBody]AddRestauranteCommand command)
@@ -60,6 +83,15 @@ namespace FN.CadRestaurante.Api.Controllers
             command.Id = id;
             _handler.Handle(command);
             return ReturnResponseCommit(command, _handler.Notifications, HttpStatusCode.OK);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public Task<IActionResult> Delete(Guid id)
+        {
+            var command = new DelRestauranteCommand(id);
+            _handler.Handle(command);
+            return ReturnResponseCommit(command, _handler.Notifications, HttpStatusCode.NoContent);
         }
     }
 }

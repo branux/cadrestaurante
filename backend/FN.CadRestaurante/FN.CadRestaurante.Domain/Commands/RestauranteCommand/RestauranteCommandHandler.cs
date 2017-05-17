@@ -1,4 +1,5 @@
-﻿using FN.CadRestaurante.Domain.Contracts.Commands;
+﻿using System;
+using FN.CadRestaurante.Domain.Contracts.Commands;
 using FN.CadRestaurante.Domain.Contracts.Repositories;
 using FN.CadRestaurante.Domain.Entities;
 using FN.CadRestaurante.Domain.FluentValidator;
@@ -7,7 +8,8 @@ namespace FN.CadRestaurante.Domain.Commands.RestauranteCommand
 {
     public class RestauranteCommandHandler : Notifiable,
         ICommandHandler<AddRestauranteCommand>,
-        ICommandHandler<EditRestauranteCommand>
+        ICommandHandler<EditRestauranteCommand>,
+        ICommandHandler<DelRestauranteCommand>
     {
         private readonly IRestauranteRepository _restauranteRepo;
 
@@ -39,6 +41,19 @@ namespace FN.CadRestaurante.Domain.Commands.RestauranteCommand
 
             restaurante.Alterar(command.Nome);
             AddNotifications(restaurante.Notifications);
+        }
+
+        public void Handle(DelRestauranteCommand command)
+        {
+            var restaurante = _restauranteRepo.Obter(command.Id);
+
+            if (restaurante == null)
+            {
+                AddNotification("restauranteId", "Restaurante não localizado");
+                return;
+            }
+
+            _restauranteRepo.Excluir(restaurante);
         }
     }
 }
