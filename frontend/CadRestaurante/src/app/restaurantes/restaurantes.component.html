@@ -7,6 +7,57 @@
             <h2 class="subtitle">
                 Listagem de Restaurantes
             </h2>
+
+            <div class="columns">
+                <div class="column is-half-desktop">
+                    <div class="field is-grouped">
+                        <p class="control is-expanded">
+                            <input class="input" type="text" placeholder="filtrar por nome">
+                        </p>
+                        <p class="control">
+                            <a class="button is-info">
+                                Buscar
+                            </a>
+                        </p>
+                    </div>
+
+                    <p>
+                        <button class="button is-success">Novo</button>
+                    </p>
+
+                </div>
+            </div>
+
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th width="90%">Restaurantes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let restaurante of restaurantes">
+                            <td>
+                                
+                                    <span class=" icon is-small " (click)="excluir(restaurante.id)">
+                                    <i class="fa fa-eraser "></i>
+                                    </span>
+                            </td>
+                             <td>
+                                    <span class="icon is-small" (click)="editar(restaurante.id)">
+                                    <i class="fa fa-pencil "></i>
+                                    </span>
+                            </td>
+                            <td>
+                                {{restaurante.nome}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </section>
