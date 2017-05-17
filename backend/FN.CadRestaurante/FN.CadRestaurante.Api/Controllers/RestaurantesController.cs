@@ -68,6 +68,25 @@ namespace FN.CadRestaurante.Api.Controllers
                     , true));
         }
 
+        [HttpGet]
+        [Route("obterpornome/{nome}")]
+        public async Task<IActionResult> Get(string nome)
+        {
+            var dados = await _restauranteRepo
+                .ObterAsync(nome)
+                .ConfigureAwait(false);
+
+            return Json(
+                new DadosDefaultVM(
+                    dados.Select(u => new
+                    {
+                        Id = u.Id,
+                        Nome = u.Nome,
+                        DataCadastro = u.DataCadastro
+                    })
+                    , true));
+        }
+
         [HttpPost]
         [Route("")]
         public Task<IActionResult> Post([FromBody]AddRestauranteCommand command)
